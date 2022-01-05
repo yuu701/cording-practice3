@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+/* 変数 */
+
+:root {
+  --main: #F26A74;
+  --sub: #FFA5A5;
+  --dark: #E13845;
+
+  --text: #444444;
+  --textwhite: #FFFFFF;
+  --back: #FFFFFF;
+  --backtrans: rgba(255,255,255,0.6);
+  --backcheck: #FFF7D2;
+  --main2sub: var(--main);
+  --main2dark: var(--main);
+
+  --change: 0.5s ease-in-out;
+}
+
+:root.darkmode {
+  --text: #EBEBEB;
+  --textwhite: #EBEBEB;
+  --back: #231802;
+  --backtrans: rgba(35,24,2,0.7);
+  --backcheck: #372A0A;
+  --main2sub: var(--sub);
+  --main2dark: var(--dark);
+}
+
+/* 基本設定 */
+body {
+  font-family: sans-serif;
+  background-color: var(--back);
+  color: var(--text);
+  text-align: center;
+  transition: var(--change);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, figure {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ヘッダー画像 */
+.header {
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(img/candy.jpg);
+  background-size: cover;
+  background-position: center;
+  transition: var(--change);
+}
+
+.darkmode .header::after {
+  filter: saturate(0.8) brightness(0.8);
+}
+
+/* スイッチ */
+.onoffswitch {
+  position: relative; width: 75px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label {
+  display: block; overflow: hidden; cursor: pointer;
+  height: 36px; padding: 0; line-height: 36px;
+  border: 2px solid #F26A74; border-radius: 36px;
+  background-color: #F26A74;
+  transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+  content: "";
+  display: block; width: 36px; margin: 0px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 37px;
+  border: 2px solid #F26A74; border-radius: 36px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  background-color: #E13845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  border-color: #E13845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  right: 0px; 
+}
+
+/* スイッチ - 追加設定 */
+.switch {
+  display: inline-block;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label::before {
+  background: rgba(255,255,255,0.8);
+}
+
+.onoffswitch-label {
+  -webkit-tap-highlight-color: transparent;
+}
